@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 @WebServlet(urlPatterns = "/calcServlet")
 public class CalcServlet extends HttpServlet {
 
-    // calcServlet?param1=10&param2=20&?date=2022-08-08
+    // calcServlet?param1=10&param2=20&date=2022-08-08
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int param1 = Integer.parseInt(request.getParameter("param1"));

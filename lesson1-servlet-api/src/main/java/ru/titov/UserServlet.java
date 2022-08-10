@@ -26,10 +26,10 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*String pathInfo = request.getPathInfo();
+        String pathInfo = request.getPathInfo();
         String contextPath = request.getContextPath();
         response.getWriter().println("request.getPathInfo() " + "<p>" + pathInfo + "</p>");
-        response.getWriter().println("request.getContextPath() " + "<p>" + contextPath + "</p>");*/
+        response.getWriter().println("request.getContextPath() " + "<p>" + contextPath + "</p>");
 
         PrintWriter writer = response.getWriter();
         writer.println("<table>");
@@ -41,7 +41,7 @@ public class UserServlet extends HttpServlet {
         for (User user : userRepository.findAll()) {
             writer.println("<tr>");
             writer.println("<td>" + user.getId() + "</td>");
-//            writer.println("<td><a href='" + getServletContext().getContextPath() + "/user/" + user.getId() + "'>" + user.getId() + "</a></td>");
+            writer.println("<td><a href=" + getServletContext().getContextPath() + "/user/" + user.getId() + ">" + user.getId() + "</a></td>");
             writer.println("<td>" + user.getUsername() + "</td>");
             writer.println("</tr>");
         }
