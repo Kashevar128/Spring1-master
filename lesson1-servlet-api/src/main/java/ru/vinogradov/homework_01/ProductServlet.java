@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 public class ProductServlet extends HttpServlet {
 
     private ProductRepository productRepository;
+    private PrintWriter writer;
 
     @Override
     public void init() throws ServletException {
@@ -32,28 +33,28 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
         Long longPathInfo = null;
-        PrintWriter writer = response.getWriter();
+        this.writer = response.getWriter();
 
         try {
 
             if(pathInfo != null) {
                 longPathInfo = Long.parseLong(pathInfo.substring(1));
                 if(!productRepository.findId(longPathInfo)) {
-                    throw new ThereIsNoSuchValue();
+                    throw new ThereIsNoSuchValueException();
                 }
-                printProductById(writer, longPathInfo);
+                printProductById(longPathInfo);
             }
-            else printAllTable(writer);
+            else printAllTable();
 
         } catch (NumberFormatException e) {
-            response.sendError(406, "Неверный формат индекса");
-        } catch (ThereIsNoSuchValue e) {
-            response.sendError(406, "Такого индекса не существует");
+            response.sendError(400, "Неверный формат индекса");
+        } catch (ThereIsNoSuchValueException e) {
+            response.sendError(400, "Такого индекса не существует");
         }
 
     }
 
-    private void printHeaderTable(PrintWriter writer) throws IOException {
+    private void printHeaderTable() throws IOException {
         writer.println("<table>");
         writer.println("<tr>");
         writer.println("<th>id</th>");
@@ -61,24 +62,28 @@ public class ProductServlet extends HttpServlet {
         writer.println("</tr>");
     }
 
-    private void printLineTable(PrintWriter writer, Product product) throws IOException {
-        writer.println("<tr>");
-        writer.println("<td><a href=" + getServletContext().getContextPath() + "/product/" + product.getId() + ">" + product.getId() + "</a></td>");
-        writer.println("<td>" + product.getProductname() + "</td>");
-        writer.println("</tr>");
+    private void printLineTable(Product product) throws IOException {
+            writer.println("<tr>");
+            writer.println("<td><a href=" + getServletContext().getContextPath() + "/product/" + product.getId() + ">" + product.getId() + "</a></td>");
+            writer.println("<td>" + product.getProductname() + "</td>");
+            writer.println("</tr>");
     }
 
-    private void printAllTable(PrintWriter writer) throws IOException {
-        printHeaderTable(writer);
-        for (Product product : productRepository.findAll()) {
-            printLineTable(writer, product);
-        }
+    private void printAllTable() throws IOException {
+        printHeaderTable();
+        productRepository.findAll().stream().forEach((product)-> {
+            try {
+                printLineTable(product);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
-    private void printProductById(PrintWriter writer, Long id) throws IOException {
+    private void printProductById(Long id) throws IOException {
         Product product = productRepository.findById(id);
-        printHeaderTable(writer);
-        printLineTable(writer, product);
+        printHeaderTable();
+        printLineTable(product);
     }
 
 
