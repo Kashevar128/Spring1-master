@@ -25,7 +25,9 @@
         <finalName>servet-api</finalName>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
@@ -36,9 +38,9 @@
                 <version>2.2</version>
                 <configuration>
                     <url>http://localhost:8080/manager/text</url>
-                    <username>admin</username>
-                    <password>admin</password>
-                    <path>/servlet-app</path>
+                    <username>kashevar128</username>
+                    <password>MoroK2530</password>
+                    <path>/servlet-api</path>
                 </configuration>
             </plugin>
         </plugins>
