@@ -11,8 +11,7 @@ import java.io.PrintWriter;
 @WebServlet(urlPatterns = "/product/*")
 public class ProductServlet extends HttpServlet {
 
-    private ProductRepository productRepository;
-    private PrintWriter writer;
+    private ProductRepository productRepository;    private PrintWriter writer;
 
     @Override
     public void init() throws ServletException {
