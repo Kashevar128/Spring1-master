@@ -1,6 +1,7 @@
 package ru.titov.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import ru.titov.Cart;
@@ -17,8 +18,8 @@ public class AppConfiguration {
     }
 
     @Bean
-    public UserService userService(UserRepository userRepository) {
-        return new UserService(userRepository);
+    public UserService userService() {
+        return new UserService();
     }
 
     @Bean
