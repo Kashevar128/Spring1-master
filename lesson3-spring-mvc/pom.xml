@@ -43,10 +43,17 @@
         <finalName>spring-mvc</finalName>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
@@ -54,8 +61,8 @@
                 <version>2.2</version>
                 <configuration>
                     <url>http://localhost:8080/manager/text</url>
-                    <username>admin</username>
-                    <password>admin</password>
+                    <username>kashevar128</username>
+                    <password>MoroK2530</password>
                     <path>/spring-mvc</path>
                 </configuration>
             </plugin>
