@@ -15,7 +15,7 @@ import ru.titov.persist.UserRepository;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserRepository  userRepository;
 
     @GetMapping
     public String listPage(Model model) {
@@ -29,11 +29,25 @@ public class UserController {
         return "user_form";
     }
 
-    @PostMapping
-    public String saveUser(User user) {
-        userRepository.update(user);
+    @GetMapping("/new")
+    public String addUser(Model model) {
+        model.addAttribute("user", new User(""));
+        return "user_form";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable long id) {
+        userRepository.delete(id);
         return "redirect:/user";
     }
+
+    @PostMapping
+    public String saveUser(User user) {
+        userRepository.save(user);
+        return "redirect:/user";
+    }
+
+    //Каждая аннотация вмещает в себя метод, который работает с отдельным http - запросом
 
 
 }
