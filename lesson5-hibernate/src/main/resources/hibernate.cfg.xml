@@ -13,6 +13,7 @@
         <property name="hibernate.format_sql">true</property>
 
         <mapping class="ru.titov.model.User"/>
+        <mapping class="ru.vinogradov.myModel.Product"/>
 <!--        <mapping class="ru.titov.model.Contact"/>-->
 <!--        <mapping class="ru.titov.model.Customer"/>-->
 <!--        <mapping class="ru.titov.model.Role"/>-->
