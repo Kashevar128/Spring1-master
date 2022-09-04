@@ -3,15 +3,22 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/lesson1-servlet-api" />
+    <file type="web" url="file://$PROJECT_DIR$/lesson3-spring-mvc" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson3-spring-mvc/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson2-spring-basics/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson1-servlet-api/pom.xml" />
+        <option value="$PROJECT_DIR$/lessson4-spring-boot/pom.xml" />
+        <option value="$PROJECT_DIR$/lessons5,6-hibernate/pom.xml" />
+        <option value="$PROJECT_DIR$/lessons5-hibernate/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="openjdk-18" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
