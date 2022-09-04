@@ -16,6 +16,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="lesson4-spring-boot (1)" target="11" />
+      <module name="lessons5,6-hibernate" target="15" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
