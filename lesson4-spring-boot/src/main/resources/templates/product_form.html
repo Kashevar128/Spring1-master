@@ -35,27 +35,27 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <form  th:action="@{/user}" method="post" th:object="${user}">
+            <form  th:action="@{/product}" method="post" th:object="${product}">
                 <input th:field="*{id}" type="hidden" id="id" name="id" >
                 <div class="form-group">
-                    <label>Username</label>
-                    <input th:field="*{username}" type="text" class="form-control" id="name" name="username" placeholder="Enter username" >
-                    <p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                    <label>Product Name</label>
+                    <input th:field="*{productName}" type="text" class="form-control" id="name" name="productName" placeholder="Enter product name" >
+                    <p class="text-danger" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></p>
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <input th:field="*{email}" type="email" class="form-control" id="email" name="email" placeholder="Enter email" >
-                    <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                    <label>Barcode</label>
+                    <input th:field="*{barcode}" type="text" class="form-control" id="barcode" name="productName" placeholder="Enter barcode" >
+                    <p class="text-danger" th:if="${#fields.hasErrors('barcode')}" th:errors="*{barcode}"></p>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input th:field="*{password}" type="password" class="form-control" id="password" name="password" placeholder="Enter password" >
-                    <p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                    <label>MFG_date</label>
+                    <input th:field="*{MFG_date}" type="text" class="form-control" id="MFG_date" name="MFG_date" placeholder="Enter MFG_date" >
+                    <p class="text-danger" th:if="${#fields.hasErrors('MFG_date')}" th:errors="*{MFG_date}"></p>
                 </div>
                 <div class="form-group">
-                    <label>Retype password</label>
-                    <input th:field="*{matchingPassword}" type="password" class="form-control" id="matchingPassword" name="matchingPassword" placeholder="Retype password" >
-                    <p class="text-danger" th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}"></p>
+                    <label>EXP_date</label>
+                    <input th:field="*{EXP_date}" type="text" class="form-control" id="EXP_date" name="EXP_date" placeholder="Enter EXP_date" >
+                    <p class="text-danger" th:if="${#fields.hasErrors('EXP_date')}" th:errors="*{EXP_date}"></p>
 
                 </div>
                 <button type="submit" class="btn btn-primary" >Submit</button>
