@@ -6,10 +6,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import ru.titov.exeptions.EntityNotFoundException;
-import ru.titov.persist.User;
-import ru.titov.persist.UserRepository;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import ru.titov.exceptions.EntityNotFoundException;
+import ru.titov.model.dto.UserDto;
+import ru.titov.service.UserService;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -20,41 +28,66 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserService service;
+
+    /*@GetMapping
+    public String listPage(@RequestParam Optional<String> usernameFilter, Model model) {
+        if (usernameFilter.isEmpty() || usernameFilter.get().isBlank()) {
+            model.addAttribute("users", userRepository.findAll());
+        } else {
+            model.addAttribute("users", userRepository.usersByUsername("%" + usernameFilter.get() + "%"));
+        }
+        return "user";
+    }*/
+
+    /*@GetMapping
+    public String listPage(
+            @RequestParam(required = false) String usernameFilter,
+            @RequestParam(required = false) String emailFilter,
+            Model model
+    ) {
+        usernameFilter = usernameFilter == null || usernameFilter.isBlank() ? null : "%" + usernameFilter.trim() + "%";
+        emailFilter = emailFilter == null || emailFilter.isBlank() ? null : "%" + emailFilter.trim() + "%";
+        model.addAttribute("users", userRepository.usersByFilter(usernameFilter, emailFilter));
+        return "user";
+    }*/
 
     @GetMapping
-    public String listPage(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+    public String listPage(
+            @RequestParam(required = false) String usernameFilter,
+            @RequestParam(required = false) String emailFilter,
+            @RequestParam(required = false) Optional<Integer> page,
+            @RequestParam(required = false) Optional<Integer> size,
+            Model model
+    ) {
+        Integer pageValue = page.orElse(1) - 1;
+        Integer sizeValue = size.orElse(3);
+
+        model.addAttribute("users", service.findAllByFilter(usernameFilter, emailFilter, pageValue, sizeValue));
         return "user";
     }
 
     @GetMapping("/{id}")
     public String form(@PathVariable("id") long id, Model model) {
-//        Optional<User> optionalUser = userRepository.findById(id);
-//        if (optionalUser.isPresent()) {
-//            model.addAttribute("user",  optionalUser);
-//        } else {
-//            throw new EntityNotFoundException(String.format("User with id %s not found", id));
-//        }
-        model.addAttribute("user", userRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundException(String.format("User with id %s not found", id))));
+        model.addAttribute("user", service.findUserById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found")));
         return "user_form";
     }
 
     @GetMapping("/new")
     public String addNewUser(Model model) {
-        model.addAttribute("user", new User(""));
+        model.addAttribute("user", new UserDto());
         return "user_form";
     }
 
     @DeleteMapping("{id}")
     public String deleteUserById(@PathVariable long id) {
-        userRepository.delete(id);
+        service.deleteUserById(id);
         return "redirect:/user";
     }
 
     @PostMapping
-    public String saveUser(@RequestBody @Valid User user, BindingResult bindingResult) {
+    public String saveUser(@Valid @ModelAttribute("user") UserDto user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "user_form";
         }
@@ -62,13 +95,13 @@ public class UserController {
             bindingResult.rejectValue("password", "Password not match");
             return "user_form";
         }
-        userRepository.save(user);
+        service.save(user);
         return "redirect:/user";
     }
 
     @PostMapping("/update")
-    public String updateUser(User user) {
-        userRepository.save(user);
+    public String updateUser(@ModelAttribute("user") UserDto user) {
+        service.save(user);
         return "redirect:/user";
     }
 

@@ -18,12 +18,11 @@
 
         <mapping class="ru.vinogradov.myModel.Product"/>
 
-<!--        <mapping class="ru.titov.model.Contact"/>-->
-<!--        <mapping class="ru.titov.model.Customer"/>-->
-<!--        <mapping class="ru.titov.model.Role"/>-->
+        <mapping class="ru.titov.model.Contact"/>
+        <mapping class="ru.titov.model.Customer"/>
+        <mapping class="ru.titov.model.Role"/>
       
-<!--        <mapping class="ru.titov.model.LineItem"/>-->
-<!--        <mapping class="ru.titov.model.Product"/>-->
+
         <mapping class="ru.vinogradov.homework06.model.MyCustomer"/>
         <mapping class="ru.vinogradov.homework06.model.MyLineItem"/>
         <mapping class="ru.vinogradov.homework06.model.MyProduct"/>

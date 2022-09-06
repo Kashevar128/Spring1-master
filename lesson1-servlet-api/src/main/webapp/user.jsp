@@ -1,5 +1,5 @@
 <%@ page import="ru.titov.persist.User" %>
-<%@ page import="ru.titov.persist.UserRepository" %>
+<%@ page import="ru.titov.persist.InMemoryUserRepository" %>
 <!doctype html>
 <html lang="en">
 

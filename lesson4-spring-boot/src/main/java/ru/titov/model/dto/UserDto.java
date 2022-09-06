@@ -1,5 +1,6 @@
-package ru.titov.persist;
+package ru.titov.model.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,8 +11,9 @@ import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class UserDto {
 
     private Long id;
 
@@ -27,7 +29,10 @@ public class User {
 
     private String matchingPassword;
 
-    public User(String username) {
+    public UserDto(Long id, String username, String email, String password) {
+        this.id = id;
         this.username = username;
+        this.email = email;
+        this.password = password;
     }
 }
