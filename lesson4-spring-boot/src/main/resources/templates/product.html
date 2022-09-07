@@ -38,12 +38,25 @@
             <a class="btn btn-primary" th:href="@{/product/newPr}">Add Product</a>
         </div>
 
+        <div class="col-12 mt-3">
+            <form class="form-inline">
+                <div class="form-group mb-2 mr-2">
+                    <label for="productNameFilter" class="sr-only">Product name filter</label>
+                    <input type="text" class="form-control" id="productNameFilter"
+                           name="productNameFilter" placeholder="Product name filter">
+                </div>
+
+                <button type="submit" class="btn btn-primary mb-2">Apply</button>
+            </form>
+        </div>
+
         <div class="col-12">
             <table class="table table-bordered my-2">
                 <thead>
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -51,6 +64,7 @@
                 <tr th:each="product : ${products}">
                     <th scope="row" th:text="${product.id}">1</th>
                     <td th:text="${product.productName}">Product 0</td>
+                    <td th:text="${product.price}">100</td>
                     <td>
                         <a class="btn btn-success" th:href="@{/product/{id}(id = ${product.id})}"><i class="fas fa-edit"></i></a>
                         <a class="btn btn-danger"  th:href="@{/product/deletePr/{id}(id = ${product.id})}"><i class="far fa-trash-alt"></i></a>

@@ -43,20 +43,9 @@
                     <p class="text-danger" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></p>
                 </div>
                 <div class="form-group">
-                    <label>Barcode</label>
-                    <input th:field="*{barcode}" type="text" class="form-control" id="barcode" name="productName" placeholder="Enter barcode" >
-                    <p class="text-danger" th:if="${#fields.hasErrors('barcode')}" th:errors="*{barcode}"></p>
-                </div>
-                <div class="form-group">
-                    <label>MFG_date</label>
-                    <input th:field="*{MFG_date}" type="text" class="form-control" id="MFG_date" name="MFG_date" placeholder="Enter MFG_date" >
-                    <p class="text-danger" th:if="${#fields.hasErrors('MFG_date')}" th:errors="*{MFG_date}"></p>
-                </div>
-                <div class="form-group">
-                    <label>EXP_date</label>
-                    <input th:field="*{EXP_date}" type="text" class="form-control" id="EXP_date" name="EXP_date" placeholder="Enter EXP_date" >
-                    <p class="text-danger" th:if="${#fields.hasErrors('EXP_date')}" th:errors="*{EXP_date}"></p>
-
+                    <label>Price</label>
+                    <input th:field="*{price}" type="text" class="form-control" id="price" name="productName" placeholder="Enter price" >
+                    <p class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
                 </div>
                 <button type="submit" class="btn btn-primary" >Submit</button>
             </form>
