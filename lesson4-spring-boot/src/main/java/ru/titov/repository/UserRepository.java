@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import ru.titov.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User> {
+public interface  UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User> {
 
     Page<User> findAllByUsernameLike(String usernameFilter, Pageable pageable);
 
