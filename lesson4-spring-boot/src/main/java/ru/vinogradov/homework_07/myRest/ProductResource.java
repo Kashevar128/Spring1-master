@@ -31,8 +31,8 @@ public class ProductResource {
         Integer sizeValue = size.orElse(3);
         String sortFieldValue = sortField.filter(s -> s.isBlank()).orElse("id");
         Page<ProductDto> allByFilter = service.findAllByFilter(productNameFilter, pageValue, sizeValue, sortFieldValue);
-        List<ProductDto> users = allByFilter.get().collect(Collectors.toList());
-        return users;
+        List<ProductDto> products = allByFilter.get().collect(Collectors.toList());
+        return products;
     }
 
     @GetMapping("/{id}")
