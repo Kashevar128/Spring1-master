@@ -56,6 +56,7 @@ lesson2-spring-basics/target
 lesson3-spring-mvc/target
 lesson4-spring-boot/target
 lesson5-hibernate/target
+lesson10/target
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
