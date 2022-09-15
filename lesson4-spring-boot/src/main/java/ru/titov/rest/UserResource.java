@@ -23,7 +23,7 @@ public class UserResource {
     private final UserService service;
 
     @GetMapping
-    public List<UserDto> listPage(
+    public Page<UserDto> listPage(
             @RequestParam(required = false) String usernameFilter,
             @RequestParam(required = false) String emailFilter,
             @RequestParam(required = false) Optional<Integer> page,
@@ -35,14 +35,12 @@ public class UserResource {
         Integer sizeValue = size.orElse(3);
         String sortFieldValue = sortField.filter(s -> s.isBlank()).orElse("id");
         Page<UserDto> allByFilter = service.findAllByFilter(usernameFilter, emailFilter, pageValue, sizeValue, sortFieldValue);
-        List<UserDto> users = allByFilter.get().collect(Collectors.toList());
-        return users;
+        return allByFilter;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/id")
     public UserDto form(@PathVariable("id") long id, Model model) {
-       UserDto userDto = service.findUserById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
-        return userDto;
+        return service.findUserById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 
     @PostMapping
