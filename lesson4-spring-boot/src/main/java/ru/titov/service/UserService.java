@@ -50,7 +50,7 @@ public class UserService {
                 .map(user -> new org.springframework.security.core.userdetails.User(
                       user.getUsername(),
                       user.getPassword(),
-                        Collections.singletonList(new SimpleGrantedAuthority("ADMIN"))
+                        Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getName()))
                 )).orElseThrow(() -> new UsernameNotFoundException(username));
     }
 
