@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.titov.model.Role;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -31,8 +30,6 @@ public class UserDto {
 
     @JsonIgnore
     private String matchingPassword;
-
-    private Role role;
 
     public UserDto(Long id, String username, String email, String password) {
         this.id = id;

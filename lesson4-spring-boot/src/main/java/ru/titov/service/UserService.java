@@ -8,7 +8,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.titov.model.User;
 import ru.titov.model.dto.UserDto;
 import ru.titov.model.mapper.UserDtoMapper;
 import ru.titov.repository.UserRepository;
@@ -36,9 +35,7 @@ public class UserService {
     }
 
     public void save(UserDto dto) {
-        User user = mapper.map(dto, encoder);
-        user.setPassword(encoder.encode(user.getPassword()));
-        userRepository.save(user);
+        userRepository.save(mapper.map(dto, encoder));
     }
 
     public void deleteUserById(Long id) {
@@ -48,10 +45,11 @@ public class UserService {
     public org.springframework.security.core.userdetails.User findUserByUsername(String username) {
         return userRepository.findByUsername(username)
                 .map(user -> new org.springframework.security.core.userdetails.User(
-                      user.getUsername(),
-                      user.getPassword(),
-                        Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getName()))
+                        user.getUsername(),
+                        user.getPassword(),
+                        Collections.singletonList(new SimpleGrantedAuthority("ADMIN"))
                 )).orElseThrow(() -> new UsernameNotFoundException(username));
+
     }
 
 }

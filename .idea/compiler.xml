@@ -13,7 +13,7 @@
         <module name="lesson10" />
         <module name="lesson5-hibernate" />
       </profile>
-      <profile name="Annotation profile for Spring1" enabled="true">
+      <profile name="Annotation profile for Unknown" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />

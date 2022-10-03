@@ -63,7 +63,7 @@ public class UserController {
     ) {
         Integer pageValue = page.orElse(1) - 1;
         Integer sizeValue = size.orElse(3);
-        String sortFieldValue = sortField.filter(s -> s.isBlank()).orElse("id");
+        String sortFieldValue = sortField.filter(s -> !s.isBlank()).orElse("id");
         model.addAttribute("users", service.findAllByFilter(usernameFilter, emailFilter, pageValue, sizeValue, sortFieldValue));
         return "user";
     }

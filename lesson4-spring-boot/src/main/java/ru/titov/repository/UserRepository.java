@@ -11,7 +11,7 @@ import ru.titov.model.User;
 import java.util.Optional;
 
 @Repository
-public interface  UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User> {
+public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User> {
 
     Page<User> findAllByUsernameLike(String usernameFilter, Pageable pageable);
 
@@ -29,7 +29,5 @@ public interface  UserRepository extends JpaRepository<User, Long>, QuerydslPred
     Page<User> usersByFilter(String usernameFilter, String emailFilter, Pageable pageable);
 
     Optional<User> findByUsername(String username);
-
-
 
 }
